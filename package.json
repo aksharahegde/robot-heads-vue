@@ -2,23 +2,50 @@
   "name": "robot-heads-vue",
   "version": "0.3.0",
   "description": "Animated 3D robot heads for Vue: glossy TV-headed bots with LED-matrix faces that show what an agent is doing (thinking, searching, listening, speaking and more). 2D canvas, no WebGL, no runtime dependencies. A Vue port of robot-heads.",
-  "keywords": ["vue", "robot", "avatar", "bot", "agent", "ai", "animation", "canvas", "3d", "mascot", "llm", "led", "status"],
+  "keywords": [
+    "vue",
+    "robot",
+    "avatar",
+    "bot",
+    "agent",
+    "ai",
+    "animation",
+    "canvas",
+    "3d",
+    "mascot",
+    "llm",
+    "led",
+    "status"
+  ],
   "license": "MIT",
   "author": "Akshara Hegde",
-  "contributors": ["Fayaz Ahmed (https://x.com/fayazara) (original robot-heads)"],
-  "repository": { "type": "git", "url": "git+https://github.com/fayazara/robot-heads.git" },
+  "contributors": [
+    "Fayaz Ahmed (https://x.com/fayazara) (original robot-heads)"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aksharahegde/robot-heads-vue.git"
+  },
   "type": "module",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "import": { "types": "./dist/index.d.ts", "default": "./dist/index.js" },
-      "require": { "types": "./dist/index.d.ts", "default": "./dist/index.cjs" }
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.cjs"
+      }
     },
     "./package.json": "./package.json"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "sideEffects": false,
   "scripts": {
     "dev": "vite --config playground/vite.config.ts",
@@ -41,5 +68,12 @@
     "vitest": "^2.1.8",
     "vue": "^3.5.13",
     "vue-tsc": "^2.2.0"
+  },
+  "homepage": "https://github.com/aksharahegde/robot-heads-vue#readme",
+  "bugs": {
+    "url": "https://github.com/aksharahegde/robot-heads-vue/issues"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
