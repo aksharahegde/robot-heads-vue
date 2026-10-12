@@ -1,0 +1,219 @@
+/* Open Runde by Laurids Kern, SIL Open Font License 1.1 (fonts/OFL.txt) */
+@font-face { font-family: 'Open Runde'; src: url('/fonts/OpenRunde-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Open Runde'; src: url('/fonts/OpenRunde-Medium.woff2') format('woff2'); font-weight: 500; font-display: swap; }
+@font-face { font-family: 'Open Runde'; src: url('/fonts/OpenRunde-Semibold.woff2') format('woff2'); font-weight: 600; font-display: swap; }
+@font-face { font-family: 'Open Runde'; src: url('/fonts/OpenRunde-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+
+/* Quiet on purpose: no borders, no glows, no chips. Space and type do
+   the structure; the selected thing is simply the brightest one. */
+:root {
+  --bg: #0a0a0b;
+  --text: #f2f2f3;
+  --soft: #a1a1a8;
+  --muted: #6b6b73;
+  --faint: #3d3d43;
+  --fill: rgba(255, 255, 255, 0.045);
+  --sans: 'Open Runde', system-ui, -apple-system, sans-serif;
+  --mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --ease: cubic-bezier(.3, .7, .4, 1);
+  --glow: #131316;
+  --seg-on: rgba(255, 255, 255, 0.09);
+  --ring: rgba(255, 255, 255, 0.08);
+  --dock-bg: rgba(255, 255, 255, 0.05);
+  --dock-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+  --tip-bg: #1c1c1f;
+  /* GitHub Dark Default */
+  --tok-text: #e6edf3;
+  --tok-tag: #7ee787;
+  --tok-attr: #79c0ff;
+  --tok-string: #a5d6ff;
+  --tok-number: #79c0ff;
+  --tok-punct: #e6edf3;
+  --code-bg: #0d1117;
+  --gutter: 40px;
+  --dock-room: 112px;
+  --controls-w: 300px;
+  --states-h: 168px;
+}
+/* light: the same page by day */
+:root[data-theme='light'] {
+  --bg: #f3f3f1;
+  --text: #151517;
+  --soft: #4f4f56;
+  --muted: #85858d;
+  --faint: #c4c4c8;
+  --fill: rgba(0, 0, 0, 0.045);
+  --glow: #ffffff;
+  --seg-on: #ffffff;
+  --ring: rgba(0, 0, 0, 0.1);
+  --dock-bg: rgba(255, 255, 255, 0.55);
+  --dock-shadow: 0 20px 50px rgba(30, 30, 40, 0.14);
+  --tip-bg: #ffffff;
+  /* GitHub Light Default */
+  --tok-text: #1f2328;
+  --tok-tag: #116329;
+  --tok-attr: #0550ae;
+  --tok-string: #0a3069;
+  --tok-number: #0550ae;
+  --tok-punct: #1f2328;
+  --code-bg: #ffffff;
+}
+:root { color-scheme: dark; }
+:root[data-theme='light'] { color-scheme: light; }
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.5 var(--sans); -webkit-font-smoothing: antialiased; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+button:focus-visible, label:focus-within { outline: 1.5px solid var(--soft); outline-offset: 4px; border-radius: 6px; }
+
+.app {
+  height: 100vh; min-height: 660px; overflow: hidden;
+  display: grid;
+  grid-template-columns: var(--dock-room) minmax(0, 1fr) var(--controls-w);
+  grid-template-rows: auto minmax(0, 1fr) var(--states-h);
+  column-gap: var(--gutter);
+  padding: 32px var(--gutter) 28px;
+  background: radial-gradient(50% 50% at 50% 45%, var(--glow) 0%, var(--bg) 100%);
+  transition: background-color .3s;
+}
+
+/* ── masthead ── */
+.masthead { grid-column: 1 / -1; grid-row: 1; display: flex; align-items: center; justify-content: space-between; }
+.byline { display: flex; align-items: center; gap: 8px; font-size: 16px; }
+.name { font-weight: 600; letter-spacing: -0.01em; }
+.by { color: var(--muted); }
+.author { display: inline-flex; align-items: center; gap: 8px; color: var(--soft); text-decoration: none; font-weight: 500; transition: color .15s; }
+.author:hover { color: var(--text); }
+.author img { width: 24px; height: 24px; border-radius: 50%; background: var(--fill); }
+.author:focus-visible { outline: 1.5px solid var(--soft); outline-offset: 4px; border-radius: 999px; }
+.install { display: inline-flex; align-items: center; gap: 14px; font: 16px var(--mono); color: var(--soft); transition: color .15s; }
+.install:hover { color: var(--text); }
+.install-copy { font: 16px var(--sans); color: var(--muted); }
+.masthead-end { display: flex; align-items: center; gap: 20px; }
+/* the GitHub mark and the theme toggle: two quiet icons, side by side */
+.masthead-end .icon-link + .theme { margin-left: -14px; }
+.icon-link { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; color: var(--soft); transition: color .15s, background .15s; }
+.icon-link:hover { color: var(--text); background: var(--fill); }
+.icon-link svg { width: 20px; height: 20px; }
+.icon-link:focus-visible { outline: 1.5px solid var(--soft); outline-offset: 2px; }
+.theme { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; color: var(--soft); transition: color .15s, background .15s; }
+.theme:hover { color: var(--text); background: var(--fill); }
+.theme svg { width: 20px; height: 20px; }
+
+/* ── the stage: the head on its own, the state set large under it ── */
+/* centred on the whole screen; the controls sit over its right side */
+.stage { grid-column: 1 / -1; grid-row: 2; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.caption { text-align: center; margin-top: 36px; }
+.caption h1 { margin: 0; font-size: 30px; font-weight: 700; letter-spacing: -0.025em; }
+.caption p { margin: 6px 0 0; color: var(--muted); font-size: 14px; }
+
+/* ── controls: a column of quiet labels ── */
+.controls { grid-column: 3; grid-row: 2 / 4; align-self: start; padding-top: 24px; z-index: 1; display: flex; flex-direction: column; gap: 22px; min-height: 0; max-height: 100%; overflow-y: auto; }
+.control { display: grid; gap: 12px; }
+.control-head { display: flex; align-items: baseline; justify-content: space-between; }
+.control-label { font-size: 13px; color: var(--soft); }
+.control-value { font-size: 12px; color: var(--muted); }
+
+.swatches { display: flex; flex-wrap: wrap; gap: 8px; }
+.swatch {
+  position: relative; width: 20px; height: 20px; border-radius: 50%;
+  box-shadow: inset 0 0 0 1px var(--ring);
+  transition: transform .15s var(--ease), box-shadow .15s;
+}
+.swatch:hover { transform: scale(1.15); }
+/* the chosen one: a thin ring, a little apart */
+.swatch[aria-pressed='true'] { box-shadow: inset 0 0 0 1px var(--ring), 0 0 0 2px var(--bg), 0 0 0 3px var(--text); }
+.swatch-custom { background: conic-gradient(#ff6b6b, #ffd36b, #7dff9a, #6bd6ff, #8a6bff, #ff6bd0, #ff6b6b); overflow: hidden; cursor: pointer; }
+.swatch-custom input { position: absolute; inset: -4px; width: calc(100% + 8px); height: calc(100% + 8px); opacity: 0; cursor: pointer; }
+
+.segments { display: flex; gap: 2px; padding: 3px; border-radius: 10px; background: var(--fill); }
+.segment { flex: 1; padding: 6px 0; border-radius: 7px; font: 12.5px var(--mono); color: var(--muted); transition: color .15s, background .15s; }
+.segment:hover { color: var(--soft); }
+.segment[aria-pressed='true'] { background: var(--seg-on); color: var(--text); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06); }
+
+.text-button { font-size: 12.5px; color: var(--muted); transition: color .15s; }
+.text-button:hover { color: var(--text); }
+.code { margin: 0; padding: 14px 16px; border-radius: 12px; background: var(--code-bg); font: 12px/1.7 var(--mono); color: var(--tok-text); white-space: pre; overflow-x: auto; box-shadow: 0 0 0 1px var(--fill); }
+.tok-tag { color: var(--tok-tag); }
+.tok-attr { color: var(--tok-attr); }
+.tok-string { color: var(--tok-string); }
+.tok-number { color: var(--tok-number); }
+.tok-punct { color: var(--tok-punct); }
+.code code { display: grid; font: inherit; }
+/* each prop line folds open and shut on its own: its row eases from 0fr to 1fr while it fades and settles */
+.code-prop {
+  display: grid; grid-template-rows: 0fr; opacity: 0;
+  transition: grid-template-rows .36s var(--ease), opacity .22s ease;
+}
+.code-prop[data-open='true'] { grid-template-rows: 1fr; opacity: 1; transition: grid-template-rows .36s var(--ease), opacity .3s ease .08s; }
+.code-prop-inner { min-height: 0; overflow: hidden; transform: translateY(-4px); transition: transform .36s var(--ease); }
+.code-prop[data-open='true'] .code-prop-inner { transform: none; }
+.control-actions { display: inline-flex; gap: 16px; }
+.reset { transition: opacity .15s, color .15s; }
+/* held in place while there is nothing to reset, so it never shifts the column */
+.reset[aria-hidden='true'] { opacity: 0; pointer-events: none; }
+
+/* ── every state, standing in a row ── */
+.states { grid-column: 1 / 3; grid-row: 3; display: flex; justify-content: center; align-items: flex-end; gap: clamp(4px, 1.6vw, 28px); min-width: 0; }
+.state { flex: 0 1 120px; display: flex; flex-direction: column; align-items: center; gap: 2px; min-width: 0; }
+.state-head { display: grid; place-items: center; padding: 22px 0 14px; opacity: .38; filter: saturate(.6); transition: opacity .25s, filter .25s, transform .25s var(--ease); }
+/* on a light page fading reads as washed out: dim less, drain more colour */
+:root[data-theme='light'] .state-head { opacity: .55; filter: saturate(.25); }
+:root[data-theme='light'] .dock-icon { opacity: .6; }
+.state-name { font-size: 12.5px; color: var(--muted); transition: color .2s; }
+.state:hover .state-head { opacity: .75; filter: none; transform: translateY(-4px); }
+.state:hover .state-name { color: var(--soft); }
+.state[aria-pressed='true'] .state-head { opacity: 1; filter: none; }
+.state[aria-pressed='true'] .state-name { color: var(--text); }
+
+/* ── the dock: a frosted pill down the left; icons swell under the pointer ── */
+.dock {
+  position: fixed; left: 28px; top: calc((100vh - var(--states-h)) / 2); transform: translateY(-50%); z-index: 10;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 6px; padding: 10px;
+  border-radius: 34px;
+  background: var(--dock-bg);
+  box-shadow: var(--dock-shadow);
+  backdrop-filter: blur(24px) saturate(1.5);
+  -webkit-backdrop-filter: blur(24px) saturate(1.5);
+}
+.dock-item {
+  --s: 1;
+  position: relative; display: block; width: 52px; height: calc(52px * var(--s));
+  transition: height .2s var(--ease);
+}
+.dock-icon {
+  position: absolute; left: 0; top: 50%; width: 52px; height: 52px;
+  transform: translateY(-50%) scale(var(--s)); transform-origin: left center;
+  opacity: .45; transition: transform .2s var(--ease), opacity .2s;
+}
+.dock-item:hover { --s: 1.4; }
+.dock-item:hover + .dock-item, .dock-item:has(+ .dock-item:hover) { --s: 1.15; }
+.dock-item:hover .dock-icon, .dock-item[aria-pressed='true'] .dock-icon { opacity: 1; }
+.dock-tip {
+  position: absolute; left: calc(52px * var(--s) + 16px); top: 50%; transform: translate(-4px, -50%);
+  padding: 5px 10px; border-radius: 8px; white-space: nowrap; pointer-events: none;
+  background: var(--tip-bg); color: var(--text); font-size: 12px; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  opacity: 0; transition: opacity .15s, transform .15s;
+}
+.dock-item:hover .dock-tip, .dock-item:focus-visible .dock-tip { opacity: 1; transform: translate(0, -50%); }
+
+/* ── smaller screens: one column that scrolls, the dock along the bottom ── */
+@media (max-width: 900px), (max-height: 640px) {
+  .app {
+    height: auto; min-height: 0; overflow: visible;
+    grid-template-columns: minmax(0, 1fr); grid-template-rows: none; row-gap: 40px;
+    padding: 24px 20px 128px;
+  }
+  .masthead, .stage, .controls, .states { grid-column: 1; grid-row: auto; }
+  .controls { max-height: none; overflow: visible; }
+  .controls { align-self: stretch; }
+  .states { flex-wrap: wrap; row-gap: 20px; }
+  .state { flex-basis: 30%; }
+  .dock { left: 50%; top: auto; bottom: 16px; transform: translateX(-50%); flex-direction: row; align-items: flex-end; }
+  .dock-item { width: calc(52px * var(--s)); height: 52px; transition: width .2s var(--ease); }
+  .dock-icon { left: 50%; top: auto; bottom: 0; transform: translateX(-50%) scale(var(--s)); transform-origin: center bottom; }
+  .dock-tip { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}

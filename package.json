@@ -1,0 +1,45 @@
+{
+  "name": "robot-heads-vue",
+  "version": "0.3.0",
+  "description": "Animated 3D robot heads for Vue: glossy TV-headed bots with LED-matrix faces that show what an agent is doing (thinking, searching, listening, speaking and more). 2D canvas, no WebGL, no runtime dependencies. A Vue port of robot-heads.",
+  "keywords": ["vue", "robot", "avatar", "bot", "agent", "ai", "animation", "canvas", "3d", "mascot", "llm", "led", "status"],
+  "license": "MIT",
+  "author": "Akshara Hegde",
+  "contributors": ["Fayaz Ahmed (https://x.com/fayazara) (original robot-heads)"],
+  "repository": { "type": "git", "url": "git+https://github.com/fayazara/robot-heads.git" },
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": { "types": "./dist/index.d.ts", "default": "./dist/index.js" },
+      "require": { "types": "./dist/index.d.ts", "default": "./dist/index.cjs" }
+    },
+    "./package.json": "./package.json"
+  },
+  "files": ["dist"],
+  "sideEffects": false,
+  "scripts": {
+    "dev": "vite --config playground/vite.config.ts",
+    "build": "vite build",
+    "build:playground": "vite build --config playground/vite.config.ts",
+    "typecheck": "tsc --noEmit && vue-tsc --noEmit -p playground/tsconfig.json",
+    "test": "vitest run",
+    "prepublishOnly": "pnpm run typecheck && pnpm run test && pnpm run build"
+  },
+  "peerDependencies": {
+    "vue": ">=3.3.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
+    "@vue/test-utils": "^2.4.6",
+    "jsdom": "^25.0.1",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11",
+    "vite-plugin-dts": "^4.5.0",
+    "vitest": "^2.1.8",
+    "vue": "^3.5.13",
+    "vue-tsc": "^2.2.0"
+  }
+}

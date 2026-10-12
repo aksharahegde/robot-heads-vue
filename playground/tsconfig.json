@@ -1,0 +1,5 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": { "paths": { "robot-heads-vue": ["../src/index.ts"] }, "types": ["vite/client"] },
+  "include": ["src", "env.d.ts", "../src"]
+}
