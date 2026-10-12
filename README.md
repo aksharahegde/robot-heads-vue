@@ -6,7 +6,7 @@ Animated 3D robot heads for Vue. Glossy, TV-headed bots with an LED-matrix face 
 
 Drawn on a 2D canvas: no WebGL, no runtime dependencies.
 
-The original playground: **[robot-heads.fayaz.workers.dev](https://robot-heads.fayaz.workers.dev)**. Run this port's playground with `pnpm dev`.
+The original playground: **[robot-heads.fayaz.workers.dev](https://robot-heads.fayaz.workers.dev)**. This port's playground: **[robot-heads-vue.akshara-dt.workers.dev](https://robot-heads-vue.akshara-dt.workers.dev)**, or run it with `pnpm dev`.
 
 ## Install
 
@@ -118,6 +118,7 @@ pnpm run test             # vitest: core maths, sim and component behaviour
 pnpm run typecheck
 pnpm run build            # the library, to dist/
 pnpm run build:playground
+pnpm run deploy:playground   # Cloudflare Workers (static assets), see wrangler.jsonc
 ```
 
 ```

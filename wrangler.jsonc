@@ -1,0 +1,12 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "robot-heads-vue",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": true,
+  "preview_urls": false,
+  "assets": {
+    "directory": "./dist-playground",
+    "not_found_handling": "single-page-application"
+  }
+  // custom domain later: "routes": [{ "pattern": "robot-heads.akshara.dev", "custom_domain": true }]
+}

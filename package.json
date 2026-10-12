@@ -53,7 +53,8 @@
     "build:playground": "vite build --config playground/vite.config.ts",
     "typecheck": "tsc --noEmit && vue-tsc --noEmit -p playground/tsconfig.json",
     "test": "vitest run",
-    "prepublishOnly": "pnpm run typecheck && pnpm run test && pnpm run build"
+    "prepublishOnly": "pnpm run typecheck && pnpm run test && pnpm run build",
+    "deploy:playground": "pnpm run build:playground && wrangler deploy"
   },
   "peerDependencies": {
     "vue": ">=3.3.0"
@@ -67,7 +68,8 @@
     "vite-plugin-dts": "^4.5.0",
     "vitest": "^2.1.8",
     "vue": "^3.5.13",
-    "vue-tsc": "^2.2.0"
+    "vue-tsc": "^2.2.0",
+    "wrangler": "^4.149.0"
   },
   "homepage": "https://github.com/aksharahegde/robot-heads-vue#readme",
   "bugs": {
