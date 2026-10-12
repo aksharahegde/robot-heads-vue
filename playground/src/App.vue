@@ -57,10 +57,10 @@ const colorKeys = Object.keys(SWATCHES) as Array<keyof Colors>;
     <header class="masthead">
       <div class="byline">
         <span class="name">robot-heads-vue</span>
-        <span class="by">port of robot-heads by</span>
-        <a class="author" href="https://x.com/fayazara" target="_blank" rel="noopener noreferrer">
-          <img src="https://github.com/fayazara.png?size=64" alt="" width="24" height="24" />
-          Fayaz Ahmed
+        <span class="by">by</span>
+        <a class="author" href="https://github.com/aksharahegde" target="_blank" rel="noopener noreferrer">
+          <img src="https://github.com/aksharahegde.png?size=64" alt="" width="24" height="24" />
+          Akshara Hegde
         </a>
       </div>
       <div class="masthead-end">
@@ -116,6 +116,11 @@ const colorKeys = Object.keys(SWATCHES) as Array<keyof Colors>;
         </div>
         <Snippet :lines="lines" />
       </div>
+
+      <p class="credit">
+        Port of <a href="https://github.com/fayazara/robot-heads" target="_blank" rel="noopener noreferrer">robot-heads</a> by
+        <a href="https://x.com/fayazara" target="_blank" rel="noopener noreferrer">Fayaz Ahmed</a>
+      </p>
     </aside>
 
     <nav class="states" aria-label="State">

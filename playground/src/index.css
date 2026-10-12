@@ -148,6 +148,9 @@ button:focus-visible, label:focus-within { outline: 1.5px solid var(--soft); out
 .code-prop[data-open='true'] { grid-template-rows: 1fr; opacity: 1; transition: grid-template-rows .36s var(--ease), opacity .3s ease .08s; }
 .code-prop-inner { min-height: 0; overflow: hidden; transform: translateY(-4px); transition: transform .36s var(--ease); }
 .code-prop[data-open='true'] .code-prop-inner { transform: none; }
+.credit { margin: -8px 0 0; font-size: 12.5px; color: var(--muted); }
+.credit a { color: var(--soft); text-decoration: none; transition: color .15s; }
+.credit a:hover { color: var(--text); }
 .control-actions { display: inline-flex; gap: 16px; }
 .reset { transition: opacity .15s, color .15s; }
 /* held in place while there is nothing to reset, so it never shifts the column */
